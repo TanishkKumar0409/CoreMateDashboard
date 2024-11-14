@@ -1,0 +1,338 @@
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--primary);
+  border-radius: 6px;
+  border: 3px solid var(--dark);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--primary-hover);
+  opacity: 1;
+}
+
+* {
+  transition: 0.5s;
+}
+
+html {
+  scrollbar-width: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+label,
+p,
+span,
+small {
+  color: var(--light);
+}
+
+a {
+  color: var(--primary);
+}
+a:hover {
+  color: var(--primary-hover);
+}
+
+canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+img {
+  width: 100%;
+  aspect-ratio: 4/4;
+  object-fit: cover;
+}
+
+.text-theme {
+  color: var(--light);
+}
+
+.text-red {
+  color: var(--primary);
+}
+
+.bg-sec-custom {
+  background: var(--secondary);
+}
+
+input[type="checkbox"]:checked {
+  background: var(--primary) !important;
+  border: none;
+  color: var(--light);
+}
+input:focus {
+  box-shadow: 0 0 0 0.2rem var(--primary-hover) !important;
+}
+
+input,
+select {
+  background: var(--dark) !important;
+  border: none !important;
+  color: var(--light) !important;
+}
+
+input::file-selector-button {
+  background: var(--dark) !important;
+  color: var(--light) !important;
+}
+
+.custom-placeholder {
+  color: var(--light) !important;
+  background: var(--dark) !important;
+}
+.custom-placeholder::placeholder {
+  color: var(--light);
+}
+
+th,
+td,
+tr {
+  color: var(--light) !important;
+  border-color: var(--dark) !important;
+  background: var(--secondary) !important;
+  text-wrap: nowrap;
+}
+
+.btn-red {
+  background: var(--primary) !important;
+  color: white !important;
+  text-wrap: nowrap;
+}
+.btn-red:hover {
+  background: var(--primary-hover) !important;
+}
+
+#spinner {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease-out, visibility 0s linear 0.5s;
+}
+
+#spinner.show {
+  transition: opacity 0.5s ease-out, visibility 0s linear 0s;
+  visibility: visible;
+  opacity: 1;
+  z-index: 9999;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 251px;
+  height: 100vh;
+  overflow-y: auto;
+  background: var(--secondary);
+  transition: 0.5s;
+  z-index: 999;
+}
+
+.content {
+  margin-left: 250px;
+  min-height: 100vh;
+  background: var(--dark);
+  transition: 0.5s;
+}
+
+@media (min-width: 992px) {
+  .sidebar {
+    margin-left: 0;
+  }
+  .sidebar.open {
+    margin-left: -250px;
+  }
+  .content {
+    width: calc(100% - 250px);
+  }
+  .content.open {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .sidebar {
+    margin-left: -250px;
+  }
+  .sidebar.open {
+    margin-left: 0;
+  }
+  .content {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
+.sidebar .navbar .navbar-nav .nav-link {
+  padding: 7px 20px;
+  color: var(--light);
+  font-weight: 500;
+  border-left: 3px solid var(--secondary);
+  border-radius: 0 30px 30px 0;
+  outline: none;
+}
+
+.sidebar .navbar .navbar-nav .nav-link:hover,
+.sidebar .navbar .navbar-nav .nav-link.active {
+  color: var(--primary);
+  background: var(--dark);
+  border-color: var(--primary);
+}
+.sidebar .navbar .navbar-nav .nav-link i {
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--dark);
+  border-radius: 40px;
+}
+
+.sidebar .navbar .navbar-nav .nav-link:hover i,
+.sidebar .navbar .navbar-nav .nav-link.active i {
+  background: var(--secondary);
+}
+
+.sidebar .navbar .dropdown-toggle::after {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  border: none;
+  content: "\f107";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  transition: 0.5s;
+}
+
+.sidebar .navbar .dropdown-toggle[aria-expanded="true"]::after {
+  transform: rotate(-180deg);
+}
+
+.sidebar .navbar .dropdown-item {
+  padding-left: 25px;
+  border-radius: 0 30px 30px 0;
+  color: var(--light);
+}
+
+.sidebar .navbar .dropdown-item:hover,
+.sidebar .navbar .dropdown-item.active {
+  background: var(--dark);
+}
+
+.content .navbar .navbar-nav .nav-link {
+  margin-left: 25px;
+  padding: 12px 0;
+  color: var(--light);
+  outline: none;
+}
+
+.content .navbar .navbar-nav .nav-link:hover span,
+.content .navbar .navbar-nav .nav-link:hover,
+.content .navbar .navbar-nav .nav-link.active {
+  color: var(--primary) !important;
+}
+
+.navbar .sidebar-toggler,
+.content .navbar .sidebar-toggler,
+.content .navbar .navbar-nav .nav-link i {
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--dark);
+  border-radius: 40px;
+  color: var(--primary);
+  border: none;
+}
+.content .navbar .sidebar-toggler:hover {
+  background: var(--primary);
+  color: var(--dark);
+}
+
+.content .navbar .dropdown-item {
+  color: var(--light);
+}
+
+.content .navbar .dropdown-item:hover,
+.content .navbar .dropdown-item.active {
+  background: var(--dark);
+}
+
+.content .navbar .dropdown-toggle::after {
+  margin-left: 6px;
+  vertical-align: middle;
+  border: none;
+  content: "\f107";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  transition: 0.5s;
+}
+
+.content .navbar .dropdown-toggle[aria-expanded="true"]::after {
+  transform: rotate(-180deg);
+}
+@media (max-width: 575.98px) {
+  .content .navbar .nav-link {
+    margin-left: 15px;
+  }
+}
+
+.custom-group {
+  border-left: 1px solid var(--light) !important;
+}
+
+.react-calendar {
+  background: var(--secondary) !important;
+  border: none !important;
+  color: var(--light) !important;
+}
+
+.react-calendar__tile {
+  color: var(--light);
+}
+.react-calendar__tile:hover {
+  color: var(--dark) !important;
+  background: var(--primary-hover) !important;
+  border-radius: 5px;
+}
+
+.react-calendar__month-view__days__day--weekend {
+  color: var(--primary) !important;
+}
+
+.react-calendar__tile--now {
+  background: var(--dark) !important;
+  color: var(--primary) !important;
+  border-radius: 5px;
+}
+.react-calendar__tile--active {
+  background: var(--primary) !important;
+  color: var(--dark) !important;
+  border-radius: 5px;
+}
+
+.react-calendar__navigation button {
+  color: var(--primary) !important;
+  border-radius: 5px;
+}
+.react-calendar__navigation button:hover {
+  color: var(--primary) !important;
+  background: var(--dark) !important;
+}
