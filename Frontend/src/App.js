@@ -76,20 +76,24 @@ function App() {
             <Route path="/products" element={<AllProducts />} />
             <Route path="/update-admin/:id" element={<UpdateAdminForm />} />
             <Route path="/update-user/:id" element={<UpdateUser />} />
-            <Route path="*" element={<Navigate to={`/`} replace />} />
           </Route>
-          <>
-            <Route
-              path="/sign-in"
-              element={
-                <ProtectedRoutes>
-                  <SignIn theme={theme} />
-                </ProtectedRoutes>
-              }
-            />
-            <Route path="/sign-up" element={<SignUp theme={theme} />} />
-            <Route path="*" element={<Navigate to={`/sign-in`} replace />} />
-          </>
+          <Route
+            path="/sign-in"
+            element={
+              <ProtectedRoutes>
+                <SignIn theme={theme} />
+              </ProtectedRoutes>
+            }
+          />
+          <Route
+            path="/sign-up"
+            element={
+              <ProtectedRoutes>
+                <SignUp theme={theme} />
+              </ProtectedRoutes>
+            }
+          />
+          <Route path="*" element={<Navigate to={`/sign-in`} replace />} />
         </Routes>
       </BrowserRouter>
     </div>

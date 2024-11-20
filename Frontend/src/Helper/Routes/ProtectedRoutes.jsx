@@ -1,19 +1,34 @@
 import React from "react";
-import { Navigate, useLocation } from "react-router-dom";
+import { Navigate, useLocation, useMatch } from "react-router-dom";
 
 export default function ProtectedRoutes({ children }) {
   const token = localStorage.getItem("token");
   const location = useLocation();
-  const path = location.pathname;
+  const restrictedPaths = [
+    "/dashboard",
+    "/add-user",
+    "/manage-user",
+    "/products",
+  ];
+  const dynamicRoutes = [
+    useMatch("/view/:id"),
+    useMatch("/admin/:id"),
+    useMatch("/update-admin/:id"),
+    useMatch("/update-user/:id"),
+  ];
 
-  if (!token) {
-    if (path === "/") {
-      return <Navigate to="/sign-in" replace />;
-    }
-  } else if (token) {
-    if (path === "/sign-in" || path === "/sign-up") {
+  if (
+    !token &&
+    (restrictedPaths.includes(location.pathname) || dynamicRoutes.some(Boolean))
+  ) {
+    return <Navigate to="/sign-in" replace />;
+  }
+
+  if (token) {
+    if (["/sign-in", "/sign-up"].includes(location.pathname)) {
       return <Navigate to="/" replace />;
-    } else if (path === "/") {
+    }
+    if (location.pathname === "/") {
       return <Navigate to="/dashboard" replace />;
     }
   }
