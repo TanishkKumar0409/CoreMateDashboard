@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useFormik } from "formik";
-import * as Yup from "yup";
 import { toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router-dom";
 import { FileAPI } from "../../Services/API/API";
+import { addUserValidationSchema } from "../../Helper/FormikValidationSchemas/ValidationSchemas";
 
 export default function UpdateUser() {
   const { id } = useParams();
@@ -22,31 +22,6 @@ export default function UpdateUser() {
 
     fetchUser();
   }, [id]);
-
-  const validationSchema = Yup.object({
-    name: Yup.string().required("Full Name is required"),
-    email: Yup.string()
-      .email("Invalid email format")
-      .required("Email is required"),
-    contact: Yup.string()
-      .matches(/^[0-9]{10}$/, "Contact number must be 10 digits")
-      .required("Contact number is required"),
-    course: Yup.string().required("Course selection is required"),
-    file: Yup.mixed()
-      .test(
-        "fileSize",
-        "File is too large",
-        (value) => !value || (value && value.size <= 1048576)
-      )
-      .test(
-        "fileType",
-        "Unsupported File Format",
-        (value) =>
-          !value ||
-          (value &&
-            ["image/jpeg", "image/png", "application/pdf"].includes(value.type))
-      ),
-  });
 
   const initialValues = user
     ? {
@@ -86,7 +61,7 @@ export default function UpdateUser() {
 
   const formik = useFormik({
     initialValues: initialValues,
-    validationSchema: validationSchema,
+    validationSchema: addUserValidationSchema,
     onSubmit: handleSubmit,
     enableReinitialize: true,
   });

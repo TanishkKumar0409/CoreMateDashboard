@@ -1,35 +1,12 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
-import * as Yup from "yup";
 import { toast } from "react-toastify";
 import { FileAPI } from "../../../Services/API/API";
+import { SignUpValidationSchema } from "../../../Helper/FormikValidationSchemas/ValidationSchemas";
 
 export default function SignUp(props) {
   const Navigate = useNavigate();
-
-  const validationSchema = Yup.object({
-    email: Yup.string()
-      .email("Invalid email address")
-      .required("Email is required"),
-    password: Yup.string()
-      .min(6, "Password must be at least 6 characters")
-      .required("Password is required"),
-    name: Yup.string().required("Name is required"),
-    contact: Yup.string()
-      .matches(/^\d{10}$/, "Contact number must be 10 digits")
-      .required("Contact is required"),
-    profile: Yup.mixed()
-      .required("Profile is required")
-      .test("fileSize", "File size is too large (max: 5MB)", (value) => {
-        return !value || (value && value.size <= 5 * 1024 * 1024);
-      })
-      .test("fileType", "Unsupported file format (only JPG/PNG)", (value) => {
-        return (
-          !value || (value && ["image/jpeg", "image/png"].includes(value.type))
-        );
-      }),
-  });
 
   const handleSubmit = async (values) => {
     const formData = new FormData();
@@ -65,7 +42,7 @@ export default function SignUp(props) {
 
   const formik = useFormik({
     initialValues: initialValues,
-    validationSchema: validationSchema,
+    validationSchema: SignUpValidationSchema,
     onSubmit: handleSubmit,
   });
 

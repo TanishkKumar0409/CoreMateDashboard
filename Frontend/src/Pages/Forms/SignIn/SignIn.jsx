@@ -1,21 +1,12 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
-import * as Yup from "yup";
 import { toast } from "react-toastify";
 import { API } from "../../../Services/API/API";
+import { signInValidationSchema } from "../../../Helper/FormikValidationSchemas/ValidationSchemas";
 
 export default function SignIn(props) {
   const Navigate = useNavigate();
-
-  const validationSchema = Yup.object({
-    email: Yup.string()
-      .email("Invalid email address")
-      .required("Email is required"),
-    password: Yup.string()
-      .min(6, "Password must be at least 6 characters")
-      .required("Password is required"),
-  });
 
   const handleSubmit = async (values) => {
     try {
@@ -44,7 +35,7 @@ export default function SignIn(props) {
 
   const formik = useFormik({
     initialValues: { email: "", password: "" },
-    validationSchema: validationSchema,
+    validationSchema: signInValidationSchema,
     onSubmit: handleSubmit,
   });
 

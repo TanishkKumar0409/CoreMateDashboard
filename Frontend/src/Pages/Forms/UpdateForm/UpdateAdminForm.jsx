@@ -1,36 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useFormik } from "formik";
-import * as Yup from "yup";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { FileAPI } from "../../../Services/API/API";
+import { SignUpValidationSchema } from "../../../Helper/FormikValidationSchemas/ValidationSchemas";
 
 export default function UpdateAdminForm() {
-  const validationSchema = Yup.object({
-    name: Yup.string().required("Full Name is required"),
-    email: Yup.string()
-      .email("Invalid email format")
-      .required("Email is required"),
-    contact: Yup.string()
-      .matches(/^[0-9]{10}$/, "Contact number must be 10 digits")
-      .required("Contact number is required"),
-    password: Yup.string().required("Password selection is required"),
-    profile: Yup.mixed()
-      .required("Profile is required")
-      .test(
-        "profileSize",
-        "Profile is too large",
-        (value) => value && value.size <= 1048576
-      )
-      .test(
-        "profileType",
-        "Unsupported profile format",
-        (value) =>
-          value &&
-          ["image/jpeg", "image/png", "application/pdf"].includes(value.type)
-      ),
-  });
-
   const { id } = useParams();
   const [data, setData] = useState([]);
   const Navigate = useNavigate();
@@ -81,7 +56,7 @@ export default function UpdateAdminForm() {
       password: "",
       profile: null,
     },
-    validationSchema: validationSchema,
+    validationSchema: SignUpValidationSchema,
     onSubmit: handleSubmit,
     enableReinitialize: true,
   });

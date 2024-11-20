@@ -1,37 +1,12 @@
 import React from "react";
 import { useFormik } from "formik";
-import * as Yup from "yup";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { FileAPI } from "../../Services/API/API";
+import { addUserValidationSchema } from "../../Helper/FormikValidationSchemas/ValidationSchemas";
 
 export default function AddUser() {
   const Navigate = useNavigate();
-
-  const validationSchema = Yup.object({
-    name: Yup.string().required("Full Name is required"),
-    email: Yup.string()
-      .email("Invalid email format")
-      .required("Email is required"),
-    contact: Yup.string()
-      .matches(/^[0-9]{10}$/, "contact number must be 10 digits")
-      .required("contact number is required"),
-    course: Yup.string().required("Course selection is required"),
-    file: Yup.mixed()
-      .required("File is required")
-      .test(
-        "fileSize",
-        "File is too large",
-        (value) => value && value.size <= 1048576
-      )
-      .test(
-        "fileType",
-        "Unsupported File Format",
-        (value) =>
-          value &&
-          ["image/jpeg", "image/png", "application/pdf"].includes(value.type)
-      ),
-  });
 
   const initialValues = {
     name: "",
@@ -63,7 +38,7 @@ export default function AddUser() {
 
   const formik = useFormik({
     initialValues: initialValues,
-    validationSchema: validationSchema,
+    validationSchema: addUserValidationSchema,
     onSubmit: handleSubmit,
   });
 
