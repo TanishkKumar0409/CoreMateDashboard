@@ -20,6 +20,7 @@ import AllProducts from "./Pages/Products/AllProducts";
 import DashboardLayout from "./Layouts/DashboardLayout";
 import UpdateAdminForm from "./Pages/Forms/UpdateForm/UpdateAdminForm";
 import UpdateUser from "./Pages/UpdateUser/UpdateUser";
+import ProtectedRoutes from "./Helper/Routes/ProtectedRoutes";
 
 function App() {
   const token = localStorage.getItem("token");
@@ -57,7 +58,9 @@ function App() {
           {token ? (
             <Route
               element={
-                <DashboardLayout handleTheme={handleTheme} theme={theme} />
+                <ProtectedRoutes>
+                  <DashboardLayout handleTheme={handleTheme} theme={theme} />
+                </ProtectedRoutes>
               }
             >
               <Route path="/" element={<Dashboard />} />
