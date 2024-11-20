@@ -23,8 +23,6 @@ import UpdateUser from "./Pages/UpdateUser/UpdateUser";
 import ProtectedRoutes from "./Helper/Routes/ProtectedRoutes";
 
 function App() {
-  const token = localStorage.getItem("token");
-
   const [theme, setTheme] = useState("moon");
 
   const handleTheme = () => {
@@ -55,35 +53,43 @@ function App() {
           position="top-center"
         />
         <Routes>
-          {token ? (
+          <Route
+            path="/"
+            element={
+              <ProtectedRoutes>
+                <Home handleTheme={handleTheme} theme={theme} />
+              </ProtectedRoutes>
+            }
+          />
+          <Route
+            element={
+              <ProtectedRoutes>
+                <DashboardLayout handleTheme={handleTheme} theme={theme} />
+              </ProtectedRoutes>
+            }
+          >
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/add-user" element={<AddUser />} />
+            <Route path="/manage-user" element={<ManageUser />} />
+            <Route path="/view/:id" element={<View />} />
+            <Route path={`/admin/:id`} element={<AdminProfile />} />
+            <Route path="/products" element={<AllProducts />} />
+            <Route path="/update-admin/:id" element={<UpdateAdminForm />} />
+            <Route path="/update-user/:id" element={<UpdateUser />} />
+            <Route path="*" element={<Navigate to={`/`} replace />} />
+          </Route>
+          <>
             <Route
+              path="/sign-in"
               element={
                 <ProtectedRoutes>
-                  <DashboardLayout handleTheme={handleTheme} theme={theme} />
+                  <SignIn theme={theme} />
                 </ProtectedRoutes>
               }
-            >
-              <Route path="/" element={<Dashboard />} />
-              <Route path="/add-user" element={<AddUser />} />
-              <Route path="/manage-user" element={<ManageUser />} />
-              <Route path="/view/:id" element={<View />} />
-              <Route path={`/admin/:id`} element={<AdminProfile />} />
-              <Route path="/products" element={<AllProducts />} />
-              <Route path="/update-admin/:id" element={<UpdateAdminForm />} />
-              <Route path="/update-user/:id" element={<UpdateUser />} />
-              <Route path="*" element={<Navigate to={`/`} replace />} />
-            </Route>
-          ) : (
-            <>
-              <Route
-                path="/"
-                element={<Home handleTheme={handleTheme} theme={theme} />}
-              />
-              <Route path="/sign-in" element={<SignIn theme={theme} />} />
-              <Route path="/sign-up" element={<SignUp theme={theme} />} />
-              <Route path="*" element={<Navigate to={`/sign-in`} replace />} />
-            </>
-          )}
+            />
+            <Route path="/sign-up" element={<SignUp theme={theme} />} />
+            <Route path="*" element={<Navigate to={`/sign-in`} replace />} />
+          </>
         </Routes>
       </BrowserRouter>
     </div>
