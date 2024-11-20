@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
-import axios from "axios";
+import { API } from "../../../Services/API/API";
 
 export default function SignIn(props) {
   const Navigate = useNavigate();
@@ -19,10 +19,7 @@ export default function SignIn(props) {
 
   const handleSubmit = async (values) => {
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/admin/login",
-        values
-      );
+      const response = await API.post("/admin/login", values);
       if (response.status === 200) {
         toast.success(response.data.message);
 

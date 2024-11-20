@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router-dom";
+import { FileAPI } from "../../Services/API/API";
 
 export default function UpdateUser() {
   const { id } = useParams();
@@ -13,9 +13,8 @@ export default function UpdateUser() {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/user/${id}`);
-        const jsonData = await response.json();
-        setUser(jsonData);
+        const response = await FileAPI.get(`/user/${id}`);
+        setUser(response.data);
       } catch (error) {
         toast.error("Failed to fetch user data");
       }
@@ -74,15 +73,7 @@ export default function UpdateUser() {
     if (values.file) formData.append("profile", values.file);
 
     try {
-      const response = await axios.put(
-        `http://localhost:5000/api/user/update/${id}`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      const response = await FileAPI.put(`/user/update/${id}`, formData);
 
       if (response.status === 200) {
         toast.success(response.data.message);

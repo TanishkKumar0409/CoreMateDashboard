@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
 import { toast } from "react-toastify";
+import { FileAPI } from "../../../Services/API/API";
 
 export default function UpdateAdminForm() {
   const validationSchema = Yup.object({
@@ -37,10 +37,12 @@ export default function UpdateAdminForm() {
 
   useEffect(() => {
     const getData = async () => {
-      const fetchData = await fetch(`http://localhost:5000/api/admin/${id}`);
-      const jsonData = await fetchData.json();
-      const outputData = jsonData.getAdmin;
-      setData(outputData);
+      try {
+        const response = await FileAPI.get(`/admin/${id}`);
+        setData(response.data.getAdmin);
+      } catch (error) {
+        console.log(error.response.data.error);
+      }
     };
     getData();
   }, [id]);
@@ -54,17 +56,13 @@ export default function UpdateAdminForm() {
       formData.append("password", values.password);
       formData.append("profile", values.profile);
 
-      const response = await axios.put(
-        `http://localhost:5000/api/admin/update/${id}`,
-        formData
-      );
+      const response = await FileAPI.put(`admin/update/${id}`, formData);
       if (response.status === 201) {
         toast.success(response.data.message);
 
-        localStorage.setItem(
-          "admin",
-          JSON.stringify(response.data.updatedUser)
-        );
+        const localData = JSON.stringify(response.data.updatedUser);
+
+        localStorage.setItem("admin", localData);
 
         Navigate(`/admin/${id}`);
 

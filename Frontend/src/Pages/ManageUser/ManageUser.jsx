@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Table from "../../Components/DashboardComponents/Table/Table";
+import { FileAPI } from "../../Services/API/API";
 
 export default function ManageUser() {
   const [data, setData] = useState([]);
@@ -11,9 +12,8 @@ export default function ManageUser() {
 
   useEffect(() => {
     const getData = async () => {
-      const fetchData = await fetch("http://localhost:5000/api/user/all");
-      const jsonData = await fetchData.json();
-      setData(jsonData);
+      const response = await FileAPI.get("/user/all");
+      setData(response.data);
     };
     getData();
   }, []);
@@ -29,8 +29,7 @@ export default function ManageUser() {
   const filteredValues = data.filter((item) => {
     const matchesSearchTerm =
       item.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      item.email?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      item.contact?.toLowerCase().includes(searchTerm.toLowerCase());
+      item.email?.toLowerCase().includes(searchTerm.toLowerCase());
 
     const matchesCourse = selectedCourse
       ? item.course?.toLowerCase() === selectedCourse.toLowerCase()
@@ -58,7 +57,7 @@ export default function ManageUser() {
           <input
             type="text"
             className="form-control custom-placeholder"
-            placeholder="Search by Name, Email, Phone"
+            placeholder="Search by Name and Email"
             value={searchTerm}
             onChange={handleSearchChange}
           />

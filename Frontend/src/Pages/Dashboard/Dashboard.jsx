@@ -4,6 +4,7 @@ import Stats from "../../Components/DashboardComponents/Stats/Stats";
 import Graphs from "../../Components/DashboardComponents/Graphs/Graphs";
 import Extras from "../../Components/DashboardComponents/Extras/Extras";
 import Table from "../../Components/DashboardComponents/Table/Table";
+import { FileAPI } from "../../Services/API/API";
 
 export default function Dashboard() {
   const [data, setData] = useState([]);
@@ -12,16 +13,17 @@ export default function Dashboard() {
   useEffect(() => {
     const getData = async () => {
       try {
-        const fetchData = await fetch("http://localhost:5000/api/user/all");
-        const jsonData = await fetchData.json();
-        setData(jsonData);
+        const response = await FileAPI.get("/user/all");
+        setData(response.data);
       } catch (error) {
-        console.error({ error: error.message });
+        console.error("Error fetching data:", error.message);
       }
     };
 
     getData();
+  }, []);
 
+  useEffect(() => {
     const courseData = data.reduce((acc, user) => {
       const { course } = user;
 

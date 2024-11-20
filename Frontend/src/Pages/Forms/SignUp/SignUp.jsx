@@ -2,8 +2,8 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import axios from "axios";
 import { toast } from "react-toastify";
+import { FileAPI } from "../../../Services/API/API";
 
 export default function SignUp(props) {
   const Navigate = useNavigate();
@@ -22,7 +22,7 @@ export default function SignUp(props) {
     profile: Yup.mixed()
       .required("Profile is required")
       .test("fileSize", "File size is too large (max: 5MB)", (value) => {
-        return !value || (value && value.size <= 5 * 1024 * 1024); // max 5MB
+        return !value || (value && value.size <= 5 * 1024 * 1024);
       })
       .test("fileType", "Unsupported file format (only JPG/PNG)", (value) => {
         return (
@@ -40,12 +40,9 @@ export default function SignUp(props) {
     formData.append("profile", values.profile);
 
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/admin/add",
-        formData,
-        { headers: { "Content-Type": "multipart/form-data" } }
-      );
+      const response = await FileAPI.post("/admin/add", formData);
       toast.success(response.data.message);
+
       Navigate("/sign-in");
     } catch (error) {
       if (error.status === 404) {

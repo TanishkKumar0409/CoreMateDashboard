@@ -1,9 +1,9 @@
 import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { FileAPI } from "../../Services/API/API";
 
 export default function AddUser() {
   const Navigate = useNavigate();
@@ -50,15 +50,7 @@ export default function AddUser() {
     formData.append("profile", values.file);
 
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/user/add",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      const response = await FileAPI.post("user/add", formData);
 
       if (response.status === 201) {
         toast.success(response.data.message);
