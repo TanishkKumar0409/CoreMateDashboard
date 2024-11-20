@@ -52,15 +52,8 @@ function App() {
           theme={theme === "sun" ? "light" : "dark"}
           position="top-center"
         />
+
         <Routes>
-          <Route
-            path="/"
-            element={
-              <ProtectedRoutes>
-                <Home handleTheme={handleTheme} theme={theme} />
-              </ProtectedRoutes>
-            }
-          />
           <Route
             element={
               <ProtectedRoutes>
@@ -77,6 +70,14 @@ function App() {
             <Route path="/update-admin/:id" element={<UpdateAdminForm />} />
             <Route path="/update-user/:id" element={<UpdateUser />} />
           </Route>
+          <Route
+            path="/"
+            element={
+              <ProtectedRoutes>
+                <Home handleTheme={handleTheme} theme={theme} />
+              </ProtectedRoutes>
+            }
+          />
           <Route
             path="/sign-in"
             element={
