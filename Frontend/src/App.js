@@ -4,7 +4,6 @@ import "bootstrap/dist/js/bootstrap.js";
 import "./App.css";
 
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -52,7 +51,7 @@ function App() {
           theme={theme === "sun" ? "light" : "dark"}
           position="top-center"
         />
-
+        
         <Routes>
           <Route
             element={
@@ -65,11 +64,12 @@ function App() {
             <Route path="/add-user" element={<AddUser />} />
             <Route path="/manage-user" element={<ManageUser />} />
             <Route path="/view/:id" element={<View />} />
-            <Route path={`/admin/:id`} element={<AdminProfile />} />
+            <Route path="/admin/:id" element={<AdminProfile />} />
             <Route path="/products" element={<AllProducts />} />
             <Route path="/update-admin/:id" element={<UpdateAdminForm />} />
             <Route path="/update-user/:id" element={<UpdateUser />} />
           </Route>
+
           <Route
             path="/"
             element={
@@ -78,23 +78,9 @@ function App() {
               </ProtectedRoutes>
             }
           />
-          <Route
-            path="/sign-in"
-            element={
-              <ProtectedRoutes>
-                <SignIn theme={theme} />
-              </ProtectedRoutes>
-            }
-          />
-          <Route
-            path="/sign-up"
-            element={
-              <ProtectedRoutes>
-                <SignUp theme={theme} />
-              </ProtectedRoutes>
-            }
-          />
-          <Route path="*" element={<Navigate to={`/sign-in`} replace />} />
+          <Route path="/sign-in" element={<SignIn theme={theme} />} />
+          <Route path="/sign-up" element={<SignUp theme={theme} />} />
+          <Route path="*" element={<Navigate to="/sign-in" replace />} />
         </Routes>
       </BrowserRouter>
     </div>
