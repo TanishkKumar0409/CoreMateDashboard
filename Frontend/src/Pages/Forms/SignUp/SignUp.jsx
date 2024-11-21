@@ -46,8 +46,8 @@ export default function SignUp(props) {
     onSubmit: handleSubmit,
   });
 
-  const handleFileChange = (event) => {
-    formik.setFieldValue("profile", event.currentTarget.files[0]);
+  const handleFileChange = (e) => {
+    formik.setFieldValue("profile", e.currentTarget.files[0]);
   };
 
   return (
