@@ -43,7 +43,7 @@ export default function Sidebar(props) {
           <div className="navbar-nav w-100">
             <Link
               to="/dashboard"
-              className={`nav-item nav-link ${getActiveClass("/")}`}
+              className={`nav-item nav-link ${getActiveClass("/dashboard")}`}
             >
               <i className="fa fa-tachometer-alt me-2"></i>Dashboard
             </Link>
