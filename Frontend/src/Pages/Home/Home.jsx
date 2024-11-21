@@ -56,7 +56,7 @@ export default function Home(props) {
                 <h1 className="display-1 fw-bold">Home</h1>
                 <p>
                   For Access The All Data, Please
-                  <Link to={`/sign-in`}>Sign In</Link>
+                  <Link to={`/sign-in`} className="ms-2">Sign In</Link>
                 </p>
               </div>
             </div>
