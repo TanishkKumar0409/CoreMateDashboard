@@ -27,7 +27,7 @@ export default function TopBar(props) {
           onClick={props.handleTheme}
           className="sidebar-toggler flex-shrink-0 m-0 ms-2"
         >
-          <i className={`fa fa-${props.theme}`}></i>
+          <i className={`fa fa-${props.theme === "sun" ? "moon" : "sun"}`}></i>
         </button>
         <button
           onClick={props.toggleFullScreen}

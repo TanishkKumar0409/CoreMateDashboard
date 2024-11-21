@@ -29,24 +29,8 @@ function App() {
     setTheme(theme === "sun" ? "moon" : "sun");
   };
 
-  const light = {
-    "--primary": "#007bff",
-    "--primary-hover": "#0056b3",
-    "--secondary": "#ebedef",
-    "--light": "#000000",
-    "--dark": "#ffffff",
-  };
-
-  const dark = {
-    "--primary": "#0a84ff",
-    "--primary-hover": "#0066cc",
-    "--secondary": "#191c24",
-    "--light": "#6c7293",
-    "--dark": "#000000",
-  };
-
   return (
-    <div style={theme === "sun" ? light : dark}>
+    <div className={theme === "sun" ? "light" : "dark"}>
       <BrowserRouter>
         <ToastContainer
           theme={theme === "sun" ? "light" : "dark"}

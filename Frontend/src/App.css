@@ -19,6 +19,21 @@
   opacity: 1;
 }
 
+.light {
+  --primary: #007bff;
+  --primary-hover: #0056b3;
+  --secondary: #ebedef;
+  --light: #000000;
+  --dark: #ffffff;
+}
+.dark {
+  --primary: #0a84ff;
+  --primary-hover: #0066cc;
+  --secondary: #191c24;
+  --light: #6c7293;
+  --dark: #000000;
+}
+
 * {
   transition: 0.5s;
 }
