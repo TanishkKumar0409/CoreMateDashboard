@@ -1,11 +1,14 @@
 import React, { useState } from "react";
+
 import { Outlet } from "react-router-dom";
+
 import Sidebar from "../Components/Navigation/Sidebar/Sidebar";
 import TopBar from "../Components/Navigation/TopBar/TopBar";
 import Footer from "../Components/Footer/Footer";
 
 export default function DashboardLayout(props) {
   const [openClass, setOpenClass] = useState("");
+
   const toggleOpenClass = () => {
     setOpenClass(openClass === "" ? "open" : "");
   };
