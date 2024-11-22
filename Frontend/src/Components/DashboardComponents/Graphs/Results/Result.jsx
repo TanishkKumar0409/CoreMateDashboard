@@ -3,6 +3,7 @@ import Chart from "chart.js/auto";
 
 export default function Result() {
   const canvasRef = useRef(null);
+
   useEffect(() => {
     const ctx = canvasRef.current.getContext("2d");
     const myChart = new Chart(ctx, {

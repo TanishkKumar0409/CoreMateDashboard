@@ -8,6 +8,7 @@ export default function TopBar(props) {
   };
 
   const Admin = JSON.parse(localStorage.getItem("admin"));
+
   return (
     <>
       <nav className="navbar navbar-expand bg-sec-custom sticky-top px-4 py-0">
