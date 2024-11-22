@@ -1,26 +1,26 @@
 import React, { useState } from "react";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.js";
 
 import "./App.css";
 
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+import DashboardLayout from "./Layouts/DashboardLayout";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import AddUser from "./Pages/AddUser/AddUser";
 import ManageUser from "./Pages/ManageUser/ManageUser";
-import SignIn from "./Pages/Forms/SignIn/SignIn";
-import SignUp from "./Pages/Forms/SignUp/SignUp";
-import Home from "./Pages/Home/Home";
-import View from "./Pages/View/View";
 import AdminProfile from "./Pages/View/AdminProfile/AdminProfile";
+import View from "./Pages/View/View";
 import AllProducts from "./Pages/Products/AllProducts";
-import DashboardLayout from "./Layouts/DashboardLayout";
 import UpdateAdminForm from "./Pages/Forms/UpdateForm/UpdateAdminForm";
 import UpdateUser from "./Pages/UpdateUser/UpdateUser";
+import Home from "./Pages/Home/Home";
+import SignUp from "./Pages/Forms/SignUp/SignUp";
+import SignIn from "./Pages/Forms/SignIn/SignIn";
 import ProtectedRoutes from "./Helper/Routes/ProtectedRoutes";
 
 function App() {
