@@ -19,11 +19,7 @@ export default function DashCalendar() {
           <div className="d-flex align-items-center justify-content-between mb-2">
             <h6 className="mb-0 text-theme">Calendar</h6>
           </div>
-          <Calendar
-            onChange={handleDateChange}
-            value={date}
-            className="w-100"
-          />
+          <Calendar onChange={handleDateChange} value={date} />
         </div>
       </div>
     </>

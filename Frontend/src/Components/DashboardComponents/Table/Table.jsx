@@ -4,6 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 export default function Table({ values, more }) {
   const location = useLocation();
   const path = location.pathname;
+
   const heading = [
     "Id",
     "image",
