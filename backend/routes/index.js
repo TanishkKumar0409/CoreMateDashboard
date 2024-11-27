@@ -45,7 +45,7 @@ const storage2 = multer.diskStorage({
   filename: function (req, file, cb) {
     cb(
       null,
-      "Uploads/Admin/" +
+      "Uploads/Users/" +
         Math.round(Math.random() * 10000000) +
         Date.now() +
         ".jpg"
