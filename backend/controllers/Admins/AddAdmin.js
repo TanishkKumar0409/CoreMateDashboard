@@ -1,5 +1,6 @@
 import Admin from "../../modals/Admins/Admin.js";
 import bcryptjs from "bcryptjs";
+import jwt from "jsonwebtoken";
 
 const addAdmin = async (req, res) => {
   try {
@@ -9,6 +10,8 @@ const addAdmin = async (req, res) => {
     if (file === null) {
       return res.json(404).json({ error: "file is required" });
     }
+
+    const privateKey = "tanishk";
 
     const lastAdmin = await Admin.findOne().sort({ id: -1 });
 
@@ -41,9 +44,10 @@ const addAdmin = async (req, res) => {
     const savedAdmin = await newAdmin.save();
 
     if (savedAdmin) {
+      var token = jwt.sign({ email, password }, privateKey);
       return res.status(201).json({
         message: "User Saved Successfully",
-        savedAdmin: savedAdmin,
+        savedAdmin: savedAdmin,token
       });
     }
   } catch (error) {
