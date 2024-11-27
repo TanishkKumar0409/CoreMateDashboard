@@ -46,7 +46,7 @@ export default function Dashboard() {
         <div className="bg-sec-custom text-center rounded p-4">
           <div className="d-flex align-items-center justify-content-between mb-4">
             <h6 className="mb-0">All Students</h6>
-            <Link to="/manage-user">Show All</Link>
+            <Link to="/dashboard/user/all">Show All</Link>
           </div>
 
           <Table values={data} />

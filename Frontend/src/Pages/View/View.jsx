@@ -84,7 +84,7 @@ export default function View() {
                         <td colSpan={"2"}>
                           <div className="btn-group w-100">
                             <Link
-                              to={`/update-user/${item.id}`}
+                              to={`/dashboard/user/update/${item.id}`}
                               className="btn btn-red btn-lg"
                             >
                               Update
@@ -96,7 +96,7 @@ export default function View() {
                               Delete
                             </button>
                             <Link
-                              to={`/manage-user`}
+                              to={`/dashboard/user/all`}
                               className="btn btn-red btn-lg"
                             >
                               Back

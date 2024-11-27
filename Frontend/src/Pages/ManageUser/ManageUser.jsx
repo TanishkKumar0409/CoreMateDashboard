@@ -83,7 +83,7 @@ export default function ManageUser() {
         <div className="bg-sec-custom text-center rounded p-4">
           <div className="d-flex align-items-center justify-content-between mb-4">
             <h5 className="mb-0 text-theme">Manage User</h5>
-            <Link to="/add-user">Add User</Link>
+            <Link to="/dashboard/user/add">Add User</Link>
           </div>
 
           <Table values={filteredValues.slice(0, more)} />

@@ -47,7 +47,10 @@ export default function Table({ values, more }) {
                   <td>{item.contact}</td>
                   <td>{item.course}</td>
                   <td className="text-center">
-                    <Link to={`/view/${item.id}`} className="btn btn-red">
+                    <Link
+                      to={`/dashboard/user/${item.id}`}
+                      className="btn btn-red"
+                    >
                       View User {item.id}
                     </Link>
                   </td>

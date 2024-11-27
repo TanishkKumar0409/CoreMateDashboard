@@ -7,16 +7,16 @@ export default function ProtectedRoutes({ children }) {
 
   const restrictedPaths = [
     "/dashboard",
-    "/add-user",
-    "/manage-user",
-    "/products",
-    "/update-admin/:id",
-    "/update-user/:id",
+    "/dashboard/user/add",
+    "/dashboard/user/all",
+    "/dashboard/products",
+    "/dashboard/admin/update/:id",
+    "/dashboard/user/update/:id",
   ];
 
   const dynamicRoutes = [
-    useMatch("/view/:id"),
-    useMatch("/admin/:id"),
+    useMatch("/dashboard/user/:id"),
+    useMatch("/dashboard/admin/:id"),
     useMatch("/update-admin/:id"),
     useMatch("/update-user/:id"),
   ];

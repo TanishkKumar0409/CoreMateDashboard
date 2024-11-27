@@ -76,7 +76,7 @@ export default function AdminProfile() {
                       <td colSpan={"2"}>
                         <div className="btn-group w-100">
                           <Link
-                            to={`/update-admin/${data.id}`}
+                            to={`/dashboard/admin/update/${data.id}`}
                             className="btn btn-red btn-lg"
                           >
                             Update
@@ -87,7 +87,10 @@ export default function AdminProfile() {
                           >
                             Delete
                           </button>
-                          <Link to={`/`} className="btn btn-red btn-lg">
+                          <Link
+                            to={`/dashboard`}
+                            className="btn btn-red btn-lg"
+                          >
                             Back
                           </Link>
                         </div>
