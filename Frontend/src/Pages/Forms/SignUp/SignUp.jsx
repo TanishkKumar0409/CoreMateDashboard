@@ -19,7 +19,6 @@ export default function SignUp(props) {
     try {
       const response = await FileAPI.post("/admin/add", formData);
       toast.success(response.data.message);
-      console.log(response);
 
       const token = response.data.token;
       const adminData = JSON.stringify(response.data.savedAdmin);
@@ -27,7 +26,9 @@ export default function SignUp(props) {
       localStorage.setItem("token", token);
       localStorage.setItem("admin", adminData);
 
-      Navigate("/sign-in");
+      Navigate("/");
+
+      window.location.reload();
     } catch (error) {
       if (error.status === 404) {
         toast.error(error.response.data.error);
