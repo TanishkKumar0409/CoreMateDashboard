@@ -12,7 +12,7 @@ export default function TopBar(props) {
   return (
     <>
       <nav className="navbar navbar-expand bg-sec-custom sticky-top px-4 py-0">
-        <Link to="/" className="navbar-brand d-flex d-lg-none me-4">
+        <Link to="/dashboard" className="navbar-brand d-flex d-lg-none me-4">
           <h2 className="text-red mb-0">
             <i className="fa fa-user-edit"></i>
           </h2>
@@ -52,7 +52,10 @@ export default function TopBar(props) {
               <span className="d-none d-lg-inline-flex">{Admin.name}</span>
             </button>
             <div className="dropdown-menu dropdown-menu-end bg-sec-custom border-0 rounded-0 rounded-bottom m-0">
-              <Link to={`/admin/${Admin.id}`} className="dropdown-item">
+              <Link
+                to={`/dashboard/admin/${Admin.id}`}
+                className="dropdown-item"
+              >
                 My Profile
               </Link>
               <p className="dropdown-item" onClick={handleSignOut}>

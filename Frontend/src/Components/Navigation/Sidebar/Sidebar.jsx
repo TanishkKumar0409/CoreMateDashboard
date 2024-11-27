@@ -33,7 +33,7 @@ export default function Sidebar(props) {
             </div>
 
             <div className="ms-3">
-              <Link to={`/`} className="text-decoration-none">
+              <Link to={`/dashboard`} className="text-decoration-none">
                 <h6 className="mb-0">{Admin.name}</h6>
               </Link>
               <span>Admin</span>
@@ -58,14 +58,18 @@ export default function Sidebar(props) {
 
               <div className="dropdown-menu bg-transparent border-0">
                 <Link
-                  to="/add-user"
-                  className={`dropdown-item ${getActiveClass("/add-user")}`}
+                  to="/dashboard/user/add"
+                  className={`dropdown-item ${getActiveClass(
+                    "/dashboard/user/add"
+                  )}`}
                 >
                   Add User
                 </Link>
                 <Link
-                  to="/manage-user"
-                  className={`dropdown-item ${getActiveClass("/manage-user")}`}
+                  to="/dashboard/user/all"
+                  className={`dropdown-item ${getActiveClass(
+                    "/dashboard/user/all"
+                  )}`}
                 >
                   Manage Users
                 </Link>
@@ -73,8 +77,10 @@ export default function Sidebar(props) {
             </div>
 
             <Link
-              to="/products"
-              className={`nav-item nav-link ${getActiveClass("/products")}`}
+              to="/dashboard/products"
+              className={`nav-item nav-link ${getActiveClass(
+                "/dashboard/products"
+              )}`}
             >
               <i className="fa fa-shopping-cart me-2"></i>Products
             </Link>

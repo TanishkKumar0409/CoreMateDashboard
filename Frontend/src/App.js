@@ -47,13 +47,16 @@ function App() {
             }
           >
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/add-user" element={<AddUser />} />
-            <Route path="/manage-user" element={<ManageUser />} />
-            <Route path="/view/:id" element={<View />} />
-            <Route path="/admin/:id" element={<AdminProfile />} />
-            <Route path="/products" element={<AllProducts />} />
-            <Route path="/update-admin/:id" element={<UpdateAdminForm />} />
-            <Route path="/update-user/:id" element={<UpdateUser />} />
+            <Route path="/dashboard/user/add" element={<AddUser />} />
+            <Route path="/dashboard/user/all" element={<ManageUser />} />
+            <Route path="/dashboard/user/:id" element={<View />} />
+            <Route path="/dashboard/admin/:id" element={<AdminProfile />} />
+            <Route path="/dashboard/products" element={<AllProducts />} />
+            <Route
+              path="/dashboard/admin/update/:id"
+              element={<UpdateAdminForm />}
+            />
+            <Route path="/dashboard/user/update/:id" element={<UpdateUser />} />
           </Route>
 
           <Route
@@ -64,8 +67,22 @@ function App() {
               </ProtectedRoutes>
             }
           />
-          <Route path="/sign-in" element={<SignIn theme={theme} />} />
-          <Route path="/sign-up" element={<SignUp theme={theme} />} />
+          <Route
+            path="/sign-in"
+            element={
+              <ProtectedRoutes>
+                <SignIn theme={theme} />
+              </ProtectedRoutes>
+            }
+          />
+          <Route
+            path="/sign-up"
+            element={
+              <ProtectedRoutes>
+                <SignUp theme={theme} />
+              </ProtectedRoutes>
+            }
+          />
           <Route path="*" element={<Navigate to="/sign-in" replace />} />
         </Routes>
       </BrowserRouter>
