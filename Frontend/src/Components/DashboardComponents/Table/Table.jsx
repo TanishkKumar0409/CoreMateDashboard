@@ -30,33 +30,34 @@ export default function Table({ values, more }) {
         </thead>
         <tbody>
           {values && values.length > 0 ? (
-            (path === "/" ? values.slice(0, 5) : values.slice(0, more)).map(
-              (item, index) => (
-                <tr key={index}>
-                  <td>{item.id}</td>
-                  <td>
-                    <img
-                      src={`http://localhost:5000/${item.profile}`}
-                      width={"50px"}
-                      height={"50px"}
-                      alt=""
-                    />
-                  </td>
-                  <td>{item.name}</td>
-                  <td>{item.email}</td>
-                  <td>{item.contact}</td>
-                  <td>{item.course}</td>
-                  <td className="text-center">
-                    <Link
-                      to={`/dashboard/user/${item.id}`}
-                      className="btn btn-red"
-                    >
-                      View User {item.id}
-                    </Link>
-                  </td>
-                </tr>
-              )
-            )
+            (path === "/dashboard"
+              ? values.slice(0, 5)
+              : values.slice(0, more)
+            ).map((item, index) => (
+              <tr key={index}>
+                <td>{item.id}</td>
+                <td>
+                  <img
+                    src={`http://localhost:5000/${item.profile}`}
+                    width={"50px"}
+                    height={"50px"}
+                    alt=""
+                  />
+                </td>
+                <td>{item.name}</td>
+                <td>{item.email}</td>
+                <td>{item.contact}</td>
+                <td>{item.course}</td>
+                <td className="text-center">
+                  <Link
+                    to={`/dashboard/user/${item.id}`}
+                    className="btn btn-red"
+                  >
+                    View User {item.id}
+                  </Link>
+                </td>
+              </tr>
+            ))
           ) : (
             <tr>
               <td
