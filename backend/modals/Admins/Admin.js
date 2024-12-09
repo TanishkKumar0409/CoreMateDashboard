@@ -29,6 +29,13 @@ const adminSchema = mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+
+  verifyToken: {
+    type: String
+  },
+  verifyTokenExpiry: {
+    type: Date,
+  }
 });
 
 const Admin = mongoose.model("Admin", adminSchema);

@@ -23,9 +23,9 @@ const storage1 = multer.diskStorage({
     cb(
       null,
       "Uploads/Admin/" +
-        Math.round(Math.random() * 10000000) +
-        Date.now() +
-        ".jpg"
+      Math.round(Math.random() * 10000000) +
+      Date.now() +
+      ".jpg"
     );
   },
 });
@@ -46,9 +46,9 @@ const storage2 = multer.diskStorage({
     cb(
       null,
       "Uploads/Users/" +
-        Math.round(Math.random() * 10000000) +
-        Date.now() +
-        ".jpg"
+      Math.round(Math.random() * 10000000) +
+      Date.now() +
+      ".jpg"
     );
   },
 });

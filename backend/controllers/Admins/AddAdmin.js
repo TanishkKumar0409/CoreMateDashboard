@@ -1,6 +1,7 @@
 import Admin from "../../modals/Admins/Admin.js";
 import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
+import Mailer from "../../Helper/Mailer/Mailer.js";
 
 const addAdmin = async (req, res) => {
   try {
@@ -43,11 +44,16 @@ const addAdmin = async (req, res) => {
 
     const savedAdmin = await newAdmin.save();
 
+    const userID = savedAdmin._id;
+
+
+    Mailer({ email, emailType: "VERIFY", userId: userID })
+
     if (savedAdmin) {
       var token = jwt.sign({ email, password }, privateKey);
       return res.status(201).json({
         message: "User Saved Successfully",
-        savedAdmin: savedAdmin,token
+        savedAdmin: savedAdmin, token
       });
     }
   } catch (error) {
